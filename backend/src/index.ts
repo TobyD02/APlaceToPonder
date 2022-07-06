@@ -1,10 +1,18 @@
+/*
+    TODO:
+        - Add regex validation to user creation (need to install regex module)
+        - Create post request for account creation and implement input validation
+        on front end based onbackend response
+*/
+
+
 const path = require('path')
 const express = require('express')
 const app = express()
 const { User } = require('./models.ts')
 
 const admin = require('firebase-admin')
-const serviceAccount = require('../aplacetoponder-a47b5-firebase-adminsdk-tngml-fb37ea1293.json')
+const serviceAccount = require('../aplacetoponder-a47b5-firebase-adminsdk-tngml-e8e1ee7849.json')
 const  { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore')
 
 admin.initializeApp({
@@ -43,7 +51,9 @@ async function addUser(user: typeof User) {
 // }
 
 let user = new User('New User', "Thisismynewpasswordlol")
-addUser(user).then(d => console.log(d))
+
+console.log(user.toFirestore())
+// addUser(user).then(d => console.log(d))
 
 
 
