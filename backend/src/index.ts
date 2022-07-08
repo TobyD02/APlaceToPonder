@@ -50,9 +50,29 @@ async function addUser(user: typeof User) {
 //         })
 // }
 
-let user = new User('New User', "Thisismynewpasswordlol")
 
-console.log(user.toFirestore())
+function test_for_login_validation() {
+    let u;
+    let i = 0
+    
+    let possibles = [{username: 't123', password: 'password'},
+        {username: 'tobyd@gmail.com', password: 'ThisisaPassword!'},
+        {username: 'tobyd123@gmail.com', password: "TobyDixon123!!"}]
+    
+    while (u == undefined) {
+        try {
+            u = new User(possibles[i].username, possibles[i].password)
+        } catch (e: unknown) {
+            console.log('invalid')
+            i++
+        }
+    
+        if (i > 5) break;
+    }
+    
+    console.log('valid')
+}
+
 // addUser(user).then(d => console.log(d))
 
 
