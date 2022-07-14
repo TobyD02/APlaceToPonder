@@ -1,46 +1,85 @@
 import "../StyleSheets/CreatePost.css"
-import { useState } from 'react'
-import ReactMarkdown from 'react-markdown'
+import React, {useState} from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from 'draft-js'
+import draftToHtml from 'draftjs-to-html';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import PageHeader from './PageHeader'
 
-function CreatePost() {
+const CreatePost = () => {
+    
+    const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+    const [html, setHtml] = useState({
+        __html: ''
+    })
 
-    const [md, setMd] = useState('')
-
-    const update_viewer = (e) => {
-        setMd(e.target.value)
+    const changeState = (state) => {
+        setEditorState(state)
+        setHtml({
+            __html: draftToHtml(convertToRaw(state.getCurrentContent()))
+        })
     }
 
     return(
-        <div id='create_post'>
-            {/* Static Header */}
-            <div id='static_toolbar'>
-                <button>Save</button>
-                <button>Edit</button>
-            </div>
-
-            {/* Split into two halves, live viewer and editor */}
-            <div id='body_container'>
-                <div id='editor'>
-                <textarea 
-                    id='editor_input'
-                    onChange={update_viewer}
-                    onKeyDown={e => {
-                        if (e.key === 'Tab' && !e.shiftKey) {
-                            document.execCommand('insertText', false, "\t")
-                            e.preventDefault()
-                            return false;
-                        }
-                    }}></textarea>
+        <div style={styles.body}>
+            <PageHeader />
+            <div style={styles.container}>
+                <div style={styles.editorContainer}>
+                    <Editor 
+                        onKeyPress = {changeState}
+                        placeholder="Share a thought..."
+                        editorState={editorState}
+                        onEditorStateChange={changeState}
+                        toolbarStyle={{borderRadius: '0px', color: '#3E3E3E'}}
+                        editorStyle={{color: '#3E3E3E', marginLeft: '20px'}}
+                        toolbar={{
+                            inline: { inDropdown: true },
+                            list: { inDropdown: true },
+                            textAlign: { inDropdown: true },
+                            link: { inDropdown: true },
+                            history: { inDropdown: true },
+                        }}
+                    />
                 </div>
-                <div id='live_viewer_container'>
-                    <div id='live_viewer'>
-                        <ReactMarkdown>{md}</ReactMarkdown> 
-                    </div>
+                <div style={styles.html_display}>
+                    <div style={{padding: '10px'}} dangerouslySetInnerHTML={html}/>
                 </div>
             </div>
         </div>
     )
+}
 
+const styles = {
+    body: {
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: '#F6D09A',
+        // backgroundColor: '#505050',
+        overflowX: 'hidden',
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: 'calc(100% - 200px)',
+        height:'calc(100% - 50px)',
+        position: 'absolute',
+        top:'50px',
+    },
+    editorContainer: {
+        width: 'calc(50vw - 100px)',
+        backgroundColor: '#dddddd',
+        marginLeft: '100px',
+    },
+    html_display: {
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'absolute',
+        left:'50vw',
+        backgroundColor: 'white',
+        width: 'calc(50vw - 100px)',
+        height: '100%',
+        marginRight: '100px',
+    }
 }
 
 export default CreatePost

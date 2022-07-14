@@ -99,3 +99,25 @@
   opacity: 100%;
   transition: opacity 0.2s;
 }
+
+.menu_button {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  top: 50%;
+  /* left: 0%; */
+  transform: translate(0, -50%);
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #dddddd;
+  opacity: 100%;
+  transition: .2s opacity;
+  width: fit-content;
+  height: fit-content;
+}
+
+.menu_button:hover {
+  opacity: 50%;
+  transition: .2s opacity;
+  cursor: pointer;
+}
