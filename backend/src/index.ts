@@ -12,7 +12,7 @@ const app = express()
 const { User } = require('./models.ts')
 
 const admin = require('firebase-admin')
-const serviceAccount = require('../aplacetoponder-a47b5-firebase-adminsdk-tngml-e8e1ee7849.json')
+const serviceAccount = require('../firebase_admin.json')
 const  { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore')
 
 admin.initializeApp({
