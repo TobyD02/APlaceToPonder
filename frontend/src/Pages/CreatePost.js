@@ -31,7 +31,7 @@ const CreatePost = () => {
                         editorState={editorState}
                         onEditorStateChange={changeState}
                         toolbarStyle={{borderRadius: '0px', color: '#3E3E3E'}}
-                        editorStyle={{color: '#3E3E3E', marginLeft: '20px'}}
+                        editorStyle={{color: '#dddddd', marginLeft: '20px'}}
                         toolbar={{
                             inline: { inDropdown: true },
                             list: { inDropdown: true },
@@ -53,8 +53,10 @@ const styles = {
     body: {
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#F6D09A',
+        // backgroundColor: '#F6D09A',
         // backgroundColor: '#505050',
+        // backgroundColor: '#F0BD75',
+        backgroundColor: '#FBBA5E',
         overflowX: 'hidden',
     },
     container: {
@@ -68,6 +70,7 @@ const styles = {
     editorContainer: {
         width: 'calc(50vw - 100px)',
         backgroundColor: '#dddddd',
+        backgroundColor: '#333333',
         marginLeft: '100px',
     },
     html_display: {
@@ -75,7 +78,9 @@ const styles = {
         flexDirection: 'column',
         position: 'absolute',
         left:'50vw',
-        backgroundColor: 'white',
+        backgroundColor: '#333333',
+        backgroundColor: '#dddddd',
+        color: '#333333',
         width: 'calc(50vw - 100px)',
         height: '100%',
         marginRight: '100px',

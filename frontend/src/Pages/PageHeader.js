@@ -24,8 +24,8 @@ const style = {
     left: '0',
     height: '50px',
     width: '100%',
-    backgroundColor: '#303030',
-    color: '#dddddd',
+    backgroundColor: '#555555',
+    color: '#333333',
     display: 'flex',
     flexDirection: 'row'
 }
