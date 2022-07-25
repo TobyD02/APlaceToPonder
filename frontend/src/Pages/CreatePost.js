@@ -39,6 +39,7 @@ const CreatePost = () => {
                             link: { inDropdown: true },
                             history: { inDropdown: true },
                         }}
+                        toolbarCustomButtons={[<SaveButton />, <PublishButton />]}
                     />
                 </div>
                 <div style={styles.html_display}>
@@ -46,6 +47,26 @@ const CreatePost = () => {
                 </div>
             </div>
         </div>
+    )
+}
+
+const SaveButton = () => {
+    const handleSave = () => {
+        console.log('saved')
+    }
+
+    return(
+        <div className='saveButton' onClick={handleSave}>Save</div>
+    )
+}
+
+const PublishButton = () => {
+    const handlePublish = () => {
+        console.log('published')
+    }
+
+    return(
+        <div className='saveButton' onClick={handlePublish}>Publish</div>
     )
 }
 

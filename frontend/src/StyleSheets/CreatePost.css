@@ -18,3 +18,14 @@
     background-color: #888888;
     height: 25px;
 }
+
+.saveButton {
+    border: 1px solid #f1f1f1;
+    padding: 3px 10px;
+    height: 24px;
+    margin-right: 3px;
+}
+
+.saveButton:hover {
+    box-shadow: 1px 1px #b9b9b9;
+}
