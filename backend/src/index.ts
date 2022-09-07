@@ -43,13 +43,16 @@ async function addUser(user: typeof User) {
     } else return false
 }
 
-// async function getAllUsers() {
-//     db.collection('users').get()
-//         .then(data => {
+async function getAllUsers() {
+    let users: any = []
+    let u = await db.collection('users').get()
 
-//         })
-// }
+    u.forEach((doc: any) => {
+        users.push(doc.data())
+    })
 
+    return users
+}
 
 function test_for_login_validation() {
     let u;
@@ -75,16 +78,32 @@ function test_for_login_validation() {
 
 // addUser(user).then(d => console.log(d))
 
+async function verify_credentials(user: {username: string, password: string}) {
+    let users = await getAllUsers()
+    let valid = false
+
+    users.forEach((u: {username: string, password: string}) => {
+        if (u.username === user.username) {
+            if (u.password === user.password) valid = true
+        }
+    })
+
+    return valid
+}
 
 
-// app.use(express.static(path.join(__dirname, '../frontend/build')))
+app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-// app.get('/', (req, res) => {
-//     res.status(200).send("Hello World!")
-// })
+app.get('/', (req: any, res: any) => {
+    res.status(200).send("Hello World!")
+})
+
+app.get('/login', (req: any, res: any) => {
+    res.status(200).send("Hello Login")
+})
 
 
-// const PORT = process.env.PORT || 3000
-// app.listen(PORT, () => {
-//     console.log(`Listening on port ${PORT}`)
-// })
+const PORT = process.env.PORT || 8080
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
+})

@@ -4,8 +4,6 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "prepare": "tsc",
-        "build": "tsc",
         "start": "ts-node src/index.ts"
     },
     "keywords": [],
@@ -18,6 +16,11 @@
     },
     "dependencies": {
         "express": "^4.18.1",
-        "firebase-admin": "^11.0.0"
+        "typescript": "next",
+        "ts-node": "latest",
+        "firebase-admin": "latest"
+    },
+    "devDependencies": {
+        "typescript": "^4.8.2"
     }
 }
