@@ -18,8 +18,8 @@
         "express": "^4.18.1",
         "typescript": "next",
         "ts-node": "latest",
-        "firebase-admin": "latest",
-        "cors": "latest"
+        "cors": "latest",
+        "pg": "latest"
     },
     "devDependencies": {
         "typescript": "^4.8.2"

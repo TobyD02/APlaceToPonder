@@ -9,11 +9,11 @@ services:
     restart: always # What to do if container crashes
     links:
       - backend
-    environment:
-      - API_URL=http://localhost:3000
+    env_file:
+      - .env
   # Create backend container
   backend:
-    # Create backend container  
+    network_mode: bridge
     build: ./backend
     ports:
       - "8080:8080"
@@ -21,10 +21,16 @@ services:
     restart: always
     links:
       - db
+    env_file:
+      - .env
   # Create database container
   db:
-    image: postgres:11.6-alpine
+    image: postgres:13.1
+    network_mode: bridge
     ports:
     - "5432:5432"
-    container_name: database-docker
     restart: always
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    env_file:
+      - .env
