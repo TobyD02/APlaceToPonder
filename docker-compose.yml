@@ -9,6 +9,8 @@ services:
     restart: always # What to do if container crashes
     links:
       - backend
+    environment:
+      - API_URL=http://localhost:3000
   # Create backend container
   backend:
     # Create backend container  

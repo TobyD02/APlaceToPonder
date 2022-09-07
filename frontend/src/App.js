@@ -1,11 +1,24 @@
 import './App.css';
 import LandingPage from './Pages/LandingPage'
 import CreatePost from './Pages/CreatePost'
-import { Route, Routes, HashRouter, Navigate} from 'react-router-dom' 
+import {useState, useEffect} from 'react'
+import { Route, Routes, HashRouter, Navigate} from 'react-router-dom'
+
 
 function App() {
+
+  const [data, setData] = useState('')
+  useEffect(() => {
+    fetch(process.env.API_URL).then(res => {
+      console.log(res)
+    })
+  }, [])
+
+
+
   return (
     <div className="App">
+      {data}
       <HashRouter>
         <Routes>
           <Route path='/' element={<LandingPage />} />

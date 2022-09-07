@@ -8,7 +8,10 @@
 
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const app = express()
+app.use(cors())
+
 const { User } = require('./models.ts')
 
 const admin = require('firebase-admin')
