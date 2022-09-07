@@ -1,6 +1,9 @@
 # TODO
 
 ## Next thing:
+- Finish initalising docker.
+- Get rid of firebase
+- Set up communication between docker containers
 - User login, sign up and state (front end and backend)
 
 ## Frontend
