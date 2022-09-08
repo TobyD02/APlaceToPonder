@@ -13,9 +13,9 @@ function LandingPage() {
   }
 
   const handle_create = (e) => {
-    e.preventDefault()
+    e.preventDefault() // Prevent reload
     console.log('Switch to sign up')
-    window.location.reload(false)
+    // window.location.reload(false) // Reload page
   }
 
   useEffect(() => {

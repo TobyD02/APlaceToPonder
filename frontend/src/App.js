@@ -4,7 +4,6 @@ import CreatePost from './Pages/CreatePost'
 import {useState, useEffect} from 'react'
 import { Route, Routes, HashRouter, Navigate} from 'react-router-dom'
 
-
 function App() {
 
   useEffect(() => {
