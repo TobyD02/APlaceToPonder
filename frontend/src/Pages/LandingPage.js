@@ -12,7 +12,8 @@ function LandingPage() {
     console.log(e.target.password.value)
   }
 
-  const handle_create = () => {
+  const handle_create = (e) => {
+    e.preventDefault()
     console.log('Switch to sign up')
     window.location.reload(false)
   }

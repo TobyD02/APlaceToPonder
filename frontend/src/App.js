@@ -7,18 +7,14 @@ import { Route, Routes, HashRouter, Navigate} from 'react-router-dom'
 
 function App() {
 
-  const [data, setData] = useState('')
   useEffect(() => {
-    fetch(process.env.API_URL).then(res => {
-      console.log(res)
-    })
-  }, [])
-
-
+    fetch(process.env.REACT_APP_API_URL)
+      .then((res) => res.json())
+      .then(data => console.log(data))
+  })
 
   return (
     <div className="App">
-      {data}
       <HashRouter>
         <Routes>
           <Route path='/' element={<LandingPage />} />

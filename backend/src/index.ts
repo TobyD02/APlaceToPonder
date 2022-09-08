@@ -17,11 +17,11 @@ const { Pool, Client } = require('pg')
 
 // Connect to database
 const client = new Client({
-    user: 'docker',
     host: 'db',
-    database: 'docker',
+    database: process.env.APP_DB_NAME,
+    user: process.env.APP_DB_USER,
     port: process.env.DB_PORT,
-    password: 'docker'
+    password: process.env.APP_DB_PASS
 })
 
 client.connect()
@@ -39,7 +39,8 @@ client.query(query, values, (err: any, res: any) => {
 // app.use(express.static(path.join(__dirname, '../frontend/build')))
 
 app.get('/', (req: any, res: any) => {
-    res.status(200).send("Hello World!")
+    let content = {'text': 'Hello World'}
+    res.status(200).send(JSON.stringify(content))
 })
 
 app.get('/login', (req: any, res: any) => {

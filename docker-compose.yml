@@ -3,18 +3,28 @@ services:
   # Create frontend container
   frontend: # Name of our service
     build: ./frontend # path to dockerfile
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - .env
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - /usr/src/app/frontend/node_modules
     ports: # Port binding to host from docker container
       - "3000:3000" # Bind port 3000 of host to 3000 of container
     container_name: frontend-docker
     restart: always # What to do if container crashes
-    links:
+    depends_on:
       - backend
-    env_file:
-      - .env
   # Create backend container
   backend:
     network_mode: bridge
     build: ./backend
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes: 
+      - ./backend:/usr/src/app/backend
+      - /usr/src/app/backend/node_modules
     ports:
       - "8080:8080"
     container_name: backend-docker
@@ -23,6 +33,8 @@ services:
       - db
     env_file:
       - .env
+    depends_on:
+      - db
   # Create database container
   db:
     image: postgres:13.1
