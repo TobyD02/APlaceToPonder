@@ -44,7 +44,8 @@ app.get('/', (req: any, res: any) => {
 })
 
 app.get('/login', (req: any, res: any) => {
-    res.status(200).send("Hello Login")
+		let object = {data: 'Hello Login'}
+    res.status(200).send(object)
 })
 
 

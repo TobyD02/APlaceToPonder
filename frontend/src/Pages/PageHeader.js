@@ -24,10 +24,11 @@ const style = {
     left: '0',
     height: '50px',
     width: '100%',
-    backgroundColor: '#555555',
+    backgroundColor: '#333333',
     color: '#333333',
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    opacity: '100%'
 }
 
 export default PageHeader

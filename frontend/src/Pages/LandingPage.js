@@ -8,8 +8,10 @@ function LandingPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(e.target.username.value)
-    console.log(e.target.password.value)
+		fetch(process.env.REACT_APP_API_URL + 'login')
+			.then(res => res.json())
+			.then(data => console.log(data.data))
+		console.log(`${process.env.REACT_APP_API_URL}`)
   }
 
   const handle_create = (e) => {
